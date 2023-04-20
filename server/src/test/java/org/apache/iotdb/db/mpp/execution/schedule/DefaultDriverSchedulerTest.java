@@ -223,7 +223,8 @@ public class DefaultDriverSchedulerTest {
     manager.getTimeoutQueue().push(testTask);
     ExecutionContext context = new ExecutionContext();
     context.setTimeSlice(new Duration(1, TimeUnit.SECONDS));
-    context.setCpuDuration(new CpuTimer.CpuDuration());
+    // Remove setCpuDuration method because it is time-consuming
+    // context.setCpuDuration(new CpuTimer.CpuDuration());
     defaultScheduler.runningToReady(testTask, context);
     // Assert.assertEquals(0.0D, testTask.getSchedulePriority(), 0.00001);
     Assert.assertEquals(DriverTaskStatus.READY, testTask.getStatus());
@@ -285,7 +286,7 @@ public class DefaultDriverSchedulerTest {
     manager.getTimeoutQueue().push(testTask);
     ExecutionContext context = new ExecutionContext();
     context.setTimeSlice(new Duration(1, TimeUnit.SECONDS));
-    context.setCpuDuration(new CpuTimer.CpuDuration());
+    // context.setCpuDuration(new CpuTimer.CpuDuration());
     defaultScheduler.runningToBlocked(testTask, context);
     // Assert.assertEquals(0.0D, testTask.getSchedulePriority(), 0.00001);
     Assert.assertEquals(DriverTaskStatus.BLOCKED, testTask.getStatus());
@@ -347,7 +348,7 @@ public class DefaultDriverSchedulerTest {
     manager.getTimeoutQueue().push(testTask);
     ExecutionContext context = new ExecutionContext();
     context.setTimeSlice(new Duration(1, TimeUnit.SECONDS));
-    context.setCpuDuration(new CpuTimer.CpuDuration());
+    // context.setCpuDuration(new CpuTimer.CpuDuration());
     defaultScheduler.runningToFinished(testTask, context);
     // Assert.assertEquals(0.0D, testTask.getSchedulePriority(), 0.00001);
     Assert.assertEquals(DriverTaskStatus.FINISHED, testTask.getStatus());
