@@ -19,7 +19,6 @@
 package org.apache.iotdb.db.mpp.execution.schedule;
 
 import org.apache.iotdb.db.mpp.execution.schedule.task.DriverTask;
-import org.apache.iotdb.db.utils.stats.CpuTimer;
 
 import io.airlift.units.Duration;
 

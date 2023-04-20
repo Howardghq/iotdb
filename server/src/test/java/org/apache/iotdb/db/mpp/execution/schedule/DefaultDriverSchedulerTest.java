@@ -28,7 +28,6 @@ import org.apache.iotdb.db.mpp.execution.schedule.queue.multilevelqueue.Multilev
 import org.apache.iotdb.db.mpp.execution.schedule.task.DriverTask;
 import org.apache.iotdb.db.mpp.execution.schedule.task.DriverTaskId;
 import org.apache.iotdb.db.mpp.execution.schedule.task.DriverTaskStatus;
-import org.apache.iotdb.db.utils.stats.CpuTimer;
 import org.apache.iotdb.mpp.rpc.thrift.IDataNodeRPCService;
 
 import io.airlift.units.Duration;
