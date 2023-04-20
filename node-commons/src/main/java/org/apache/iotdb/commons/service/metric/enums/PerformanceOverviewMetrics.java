@@ -83,7 +83,7 @@ public class PerformanceOverviewMetrics implements IMetricSet {
 
   /** Record the time cost in parse stage. */
   public void recordParseCost(long costTimeInNanos) {
-    //parseTimer.updateNanos(costTimeInNanos);
+    // parseTimer.updateNanos(costTimeInNanos);
   }
 
   /** Record the time cost in analyze stage. */
