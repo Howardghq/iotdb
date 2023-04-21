@@ -212,7 +212,7 @@ public class StatementGenerator {
     SelectComponent selectComponent = new SelectComponent(zoneId);
     List<PartialPath> selectPaths = new ArrayList<>();
     for (String pathStr : req.getPaths()) {
-      selectPaths.add(new PartialPath(pathStr));
+      selectPaths.add(new PartialPath(pathStr, false));
     }
     List<TAggregationType> aggregations = req.getAggregations();
     for (int i = 0; i < aggregations.size(); i++) {
