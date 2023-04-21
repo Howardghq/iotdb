@@ -115,6 +115,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import static org.apache.iotdb.commons.conf.IoTDBConstant.MULTI_LEVEL_PATH_WILDCARD;
 import static org.apache.iotdb.db.service.thrift.impl.MLNodeRPCServiceImpl.ML_METRICS_PATH_PREFIX;
+import static org.apache.iotdb.tsfile.common.constant.TsFileConstant.PATH_SEPARATOR;
 
 /** Convert SQL and RPC requests to {@link Statement}. */
 public class StatementGenerator {
@@ -212,7 +213,7 @@ public class StatementGenerator {
     SelectComponent selectComponent = new SelectComponent(zoneId);
     List<PartialPath> selectPaths = new ArrayList<>();
     for (String pathStr : req.getPaths()) {
-      selectPaths.add(new PartialPath(pathStr, false));
+      selectPaths.add(new PartialPath(pathStr.split("\\.")));
     }
     List<TAggregationType> aggregations = req.getAggregations();
     for (int i = 0; i < aggregations.size(); i++) {
@@ -629,7 +630,7 @@ public class StatementGenerator {
           measurements.add(Collections.singletonList(measurementName));
         } else {
           measurements.add(
-              Collections.singletonList(prefix + TsFileConstant.PATH_SEPARATOR + measurementName));
+              Collections.singletonList(prefix + PATH_SEPARATOR + measurementName));
         }
         dataTypes.add(Collections.singletonList(dataType));
         encodings.add(Collections.singletonList(encoding));
@@ -648,7 +649,7 @@ public class StatementGenerator {
           thisMeasurements.add(alignedPrefix.get(prefix).get(i));
         } else {
           thisMeasurements.add(
-              prefix + TsFileConstant.PATH_SEPARATOR + alignedPrefix.get(prefix).get(i));
+              prefix + PATH_SEPARATOR + alignedPrefix.get(prefix).get(i));
         }
         thisDataTypes.add(alignedDataTypes.get(prefix).get(i));
         thisEncodings.add(alignedEncodings.get(prefix).get(i));
@@ -823,9 +824,9 @@ public class StatementGenerator {
       throws IllegalPathException {
     String path =
         ML_METRICS_PATH_PREFIX
-            + TsFileConstant.PATH_SEPARATOR
+            + PATH_SEPARATOR
             + recordModelMetricsReq.getModelId()
-            + TsFileConstant.PATH_SEPARATOR
+            + PATH_SEPARATOR
             + recordModelMetricsReq.getTrialId();
     InsertRowStatement insertRowStatement = new InsertRowStatement();
     insertRowStatement.setDevicePath(new PartialPath(path));
@@ -890,9 +891,9 @@ public class StatementGenerator {
       throws IllegalPathException {
     String path =
         ML_METRICS_PATH_PREFIX
-            + TsFileConstant.PATH_SEPARATOR
+            + PATH_SEPARATOR
             + req.getModelId()
-            + TsFileConstant.PATH_SEPARATOR
+            + PATH_SEPARATOR
             + MULTI_LEVEL_PATH_WILDCARD;
     return new DeleteTimeSeriesStatement(Collections.singletonList(new PartialPath(path)));
   }
