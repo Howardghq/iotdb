@@ -89,7 +89,6 @@ import org.apache.iotdb.service.rpc.thrift.TSQueryTemplateReq;
 import org.apache.iotdb.service.rpc.thrift.TSRawDataQueryReq;
 import org.apache.iotdb.service.rpc.thrift.TSSetSchemaTemplateReq;
 import org.apache.iotdb.service.rpc.thrift.TSUnsetSchemaTemplateReq;
-import org.apache.iotdb.tsfile.common.constant.TsFileConstant;
 import org.apache.iotdb.tsfile.file.metadata.enums.CompressionType;
 import org.apache.iotdb.tsfile.file.metadata.enums.TSDataType;
 import org.apache.iotdb.tsfile.file.metadata.enums.TSEncoding;
@@ -629,8 +628,7 @@ public class StatementGenerator {
         if ("".equals(prefix)) {
           measurements.add(Collections.singletonList(measurementName));
         } else {
-          measurements.add(
-              Collections.singletonList(prefix + PATH_SEPARATOR + measurementName));
+          measurements.add(Collections.singletonList(prefix + PATH_SEPARATOR + measurementName));
         }
         dataTypes.add(Collections.singletonList(dataType));
         encodings.add(Collections.singletonList(encoding));
@@ -648,8 +646,7 @@ public class StatementGenerator {
         if ("".equals(prefix)) {
           thisMeasurements.add(alignedPrefix.get(prefix).get(i));
         } else {
-          thisMeasurements.add(
-              prefix + PATH_SEPARATOR + alignedPrefix.get(prefix).get(i));
+          thisMeasurements.add(prefix + PATH_SEPARATOR + alignedPrefix.get(prefix).get(i));
         }
         thisDataTypes.add(alignedDataTypes.get(prefix).get(i));
         thisEncodings.add(alignedEncodings.get(prefix).get(i));
